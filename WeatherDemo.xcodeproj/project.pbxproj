@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B6DD068E38CE3440E396696 /* libPods-WeatherDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB012BDBA60488D033094359 /* libPods-WeatherDemo.a */; };
 		2B064DA528B21ECB00ADD4F9 /* icons8-clouds-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B064D7928B21ECB00ADD4F9 /* icons8-clouds-30.png */; };
 		2B064DA628B21ECB00ADD4F9 /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B064D7A28B21ECB00ADD4F9 /* Time.png */; };
 		2B064DA728B21ECB00ADD4F9 /* Hypno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B064D7B28B21ECB00ADD4F9 /* Hypno@2x.png */; };
@@ -51,6 +52,7 @@
 		2B064DCE28B21ECB00ADD4F9 /* W0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B064DA328B21ECB00ADD4F9 /* W0.png */; };
 		2B2DB18C28AF661100307E09 /* chooseCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2DB18B28AF661100307E09 /* chooseCityViewController.m */; };
 		2B2DB19128AFA05600307E09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2DB19028AFA05600307E09 /* AppDelegate.m */; };
+		2B570ACB28B79FAC003048C8 /* LifeIndexCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B570ACA28B79FAC003048C8 /* LifeIndexCollectionViewCell.m */; };
 		2B6367A828A392FF0020DD1E /* YHYWeatherData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6367A728A392FF0020DD1E /* YHYWeatherData.m */; };
 		2B6367AB28A413CE0020DD1E /* YHYCityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6367AA28A413CE0020DD1E /* YHYCityItem.m */; };
 		2B6367B128A4ABBB0020DD1E /* forecastSevenDaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6367AF28A4ABBA0020DD1E /* forecastSevenDaysViewController.m */; };
@@ -131,6 +133,8 @@
 		2B2DB18B28AF661100307E09 /* chooseCityViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chooseCityViewController.m; sourceTree = "<group>"; };
 		2B2DB18F28AFA05500307E09 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B2DB19028AFA05600307E09 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B570AC928B79FAC003048C8 /* LifeIndexCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LifeIndexCollectionViewCell.h; sourceTree = "<group>"; };
+		2B570ACA28B79FAC003048C8 /* LifeIndexCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LifeIndexCollectionViewCell.m; sourceTree = "<group>"; };
 		2B6367A628A392FF0020DD1E /* YHYWeatherData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYWeatherData.h; sourceTree = "<group>"; };
 		2B6367A728A392FF0020DD1E /* YHYWeatherData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHYWeatherData.m; sourceTree = "<group>"; };
 		2B6367A928A413CE0020DD1E /* YHYCityItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYCityItem.h; sourceTree = "<group>"; };
@@ -167,6 +171,7 @@
 		520AA490187C4EC00048F174 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		520AA496187C4EC00048F174 /* WeatherDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82567341EA6DF4E658E2CB05 /* Pods-WeatherDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDemo.debug.xcconfig"; path = "Target Support Files/Pods-WeatherDemo/Pods-WeatherDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		AB012BDBA60488D033094359 /* libPods-WeatherDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeatherDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7718222503029EE81BDD2BB /* Pods-WeatherDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherDemo.release.xcconfig"; path = "Target Support Files/Pods-WeatherDemo/Pods-WeatherDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +183,7 @@
 				520AA481187C4EC00048F174 /* CoreGraphics.framework in Frameworks */,
 				520AA483187C4EC00048F174 /* UIKit.framework in Frameworks */,
 				520AA47F187C4EC00048F174 /* Foundation.framework in Frameworks */,
+				1B6DD068E38CE3440E396696 /* libPods-WeatherDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,15 +271,17 @@
 			children = (
 				2B6367B028A4ABBA0020DD1E /* forecastSevenDaysViewController.h */,
 				2B6367AF28A4ABBA0020DD1E /* forecastSevenDaysViewController.m */,
+				2B63DFD728A93D000023FB79 /* weatherLiveViewController.h */,
+				2B63DFD828A93D000023FB79 /* weatherLiveViewController.m */,
 				2B2DB18A28AF661100307E09 /* chooseCityViewController.h */,
 				2B2DB18B28AF661100307E09 /* chooseCityViewController.m */,
 				2BA6190C28AB4B0B004DC95C /* todaydetailView.h */,
 				2BA6190D28AB4B0B004DC95C /* todaydetailView.m */,
 				2BA6190F28AB4B92004DC95C /* commonDefine.h */,
-				2B63DFD728A93D000023FB79 /* weatherLiveViewController.h */,
-				2B63DFD828A93D000023FB79 /* weatherLiveViewController.m */,
 				2B63DFE028A94E950023FB79 /* LiveCollectionViewCell.h */,
 				2B63DFE128A94E950023FB79 /* LiveCollectionViewCell.m */,
+				2B570AC928B79FAC003048C8 /* LifeIndexCollectionViewCell.h */,
+				2B570ACA28B79FAC003048C8 /* LifeIndexCollectionViewCell.m */,
 				2B63682428A63AE10020DD1E /* HoursCollectionViewCell.h */,
 				2B63682528A63AE10020DD1E /* HoursCollectionViewCell.m */,
 				2B6367B228A4FF880020DD1E /* BaseforecastSevenDaysVC.h */,
@@ -322,6 +330,7 @@
 				520AA47E187C4EC00048F174 /* Foundation.framework */,
 				520AA480187C4EC00048F174 /* CoreGraphics.framework */,
 				520AA482187C4EC00048F174 /* UIKit.framework */,
+				AB012BDBA60488D033094359 /* libPods-WeatherDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 				2B2DB19128AFA05600307E09 /* AppDelegate.m in Sources */,
 				2B63DFDF28A940720023FB79 /* YHYLifeIndexItem.m in Sources */,
 				2B63682628A63AE10020DD1E /* HoursCollectionViewCell.m in Sources */,
+				2B570ACB28B79FAC003048C8 /* LifeIndexCollectionViewCell.m in Sources */,
 				2B63682F28A6556B0020DD1E /* YHYForecastHoursItem.m in Sources */,
 				2B6367B128A4ABBB0020DD1E /* forecastSevenDaysViewController.m in Sources */,
 				2B6367A828A392FF0020DD1E /* YHYWeatherData.m in Sources */,

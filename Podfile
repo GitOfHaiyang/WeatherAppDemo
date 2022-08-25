@@ -8,5 +8,5 @@ target 'WeatherDemo' do
   pod 'AFNetworking', '~> 4.0'
   pod 'MMPlaceHolder'
   pod 'WHToast','~>0.1.0'
-
+  pod 'MJExtension'
 end

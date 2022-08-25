@@ -33,10 +33,6 @@
     weatherNavController.tabBarItem = item4;
 
     
-    
-
-    
-    
     //add all VC to tabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[weatherNavController, liveVC];

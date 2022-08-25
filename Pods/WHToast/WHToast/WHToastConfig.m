@@ -42,7 +42,7 @@ static id _instance;
     _tipImageBottomMargin = 8;
     _tipImageSize = CGSizeMake(50, 50);
     _maskColor = [UIColor colorWithWhite:0 alpha:0.3];
-    _textColor = [UIColor whiteColor];
+    _textColor = [UIColor blackColor];
     _backColor = [UIColor colorWithWhite:0 alpha:0.7];
     _font = [UIFont systemFontOfSize:14];
 }

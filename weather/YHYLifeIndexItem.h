@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YHYLifeIndexItem : NSObject
 
+@property (nonatomic, strong) NSString *day;
+@property (nonatomic, strong) NSMutableArray<NSString *> *desc;
+@property (nonatomic, strong) NSMutableArray<NSString *> *name;
+@property (nonatomic, strong) NSMutableArray<NSString *> *status;
+- (instancetype)initwithArray:(NSArray *)array;
 @end
 
 NS_ASSUME_NONNULL_END

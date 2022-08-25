@@ -16,16 +16,14 @@
 static NSString * const reuseIdentifier_live = @"liveCell";
 static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
 
-#define ScreenWidth     [[UIScreen mainScreen] bounds].size.width
-#define ScreenHeight    [[UIScreen mainScreen] bounds].size.height
 #define live(obj)       self.weatherData.liveItem.obj
-
 
 @interface weatherLiveViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) YHYWeatherData *weatherData;
 
 @property (nonatomic, strong) UICollectionView *liveView;
+
 //@property (nonatomic, strong) UICollectionView *lifeIndexView;
 
 @property (nonatomic, strong) UIImageView* backgroundView;
@@ -36,12 +34,6 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
 @end
 
 @implementation weatherLiveViewController
-
-- (void)injected {
-    [self viewDidLoad];
-
-    [self.liveView reloadData];
-}
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -59,6 +51,7 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
     // Do any additional setup after loading the view.
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.liveView];
+//    [self.view addSubview:self.lifeIndexView];
     
 }
 
@@ -66,6 +59,7 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
     NSDictionary  *dict=[noti userInfo];
     _weatherData = [dict objectForKey:@"weatherData"];
     NSLog(@"notification:%@", _weatherData);
+    
 //    [self.liveView reloadData];
 }
 
@@ -110,6 +104,8 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
     }
     return _liveView;
 }
+
+
 
 - (UIImageView *)backgroundView {
     if(!_backgroundView) {

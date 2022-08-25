@@ -7,9 +7,7 @@
 //
 
 #import "LiveCollectionViewCell.h"
-
-#define ScreenWidth     [[UIScreen mainScreen] bounds].size.width
-#define ScreenHeight    [[UIScreen mainScreen] bounds].size.height
+#import "commonDefine.h"
 
 @implementation LiveCollectionViewCell
 
@@ -19,7 +17,7 @@
     
     _Label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
     _Label.backgroundColor = [UIColor clearColor];
-    _Label.textAlignment = NSTextAlignmentCenter;
+    _Label.textAlignment = NSTextAlignmentNatural;
     _Label.font = [UIFont boldSystemFontOfSize:12];
     [self addSubview:self.Label];
 

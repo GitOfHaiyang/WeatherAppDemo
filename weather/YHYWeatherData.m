@@ -15,6 +15,18 @@
 #import "commonDefine.h"
 //#import "AFNetworking.h"
 
+@interface YHYWeatherData ()
+//内部用
+@property (nonatomic, copy) NSDictionary *YHYAllData;
+@property (nonatomic, copy) NSDictionary *YHYCityData;
+@property (nonatomic, copy) NSDictionary *YHYWeatherLiveData;
+@property (nonatomic, copy) NSArray *YHYForecastDaysData;
+@property (nonatomic, copy) NSArray *YHYForecastHoursData;
+@property (nonatomic, copy) NSDictionary *YHYLifeIndexData;
+
+@end
+
+
 
 @implementation YHYWeatherData
 
@@ -34,12 +46,14 @@
 }
 
 - (instancetype)init {
+    //不设置地区，默认为闵行区
     return [self initWithCityId:@"50"];
 }
 
 - (void)refreshWeatherData:(NSString *)cityId {
     _cityID = cityId;
-    /* https://market.aliyun.com/products/57096001/cmapi013828.html?spm=5176.2020520132.101.2.a77d72187hOy5U#sku=yuncode782800000 */
+    /* 墨迹天气API： https://market.aliyun.com/products/57096001/cmapi013828.html?spm=5176.2020520132.101.2.a77d72187hOy5U#sku=yuncode782800000
+     */
     //15天天气预报
     [self obtainWeatherData:_cityID
                     urlPath:urlForecast15days
@@ -53,17 +67,19 @@
                  kindOfData:forecastHours];
     //天气实况
     [self obtainWeatherData:_cityID
-                    urlPath:urlweatherLive
-                   urlToken:urlTokenweatherLive
+                    urlPath:urlWeatherLive
+                   urlToken:urlTokenWeatherLive
                  kindOfData:weatherLive];
-        
-    NSDictionary  *dict=[[NSDictionary alloc]initWithObjects:@[self] forKeys:@[@"weatherData"]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"Data" object:nil userInfo:dict];
-}
-//将name转为CityID，需录入城市数据并做匹配
-//也可根据定位的经纬度来匹配城市ID
-- (void)nameTransferToCityID:(NSString *)name{
     
+    //生活指数
+    [self obtainWeatherData:_cityID
+                    urlPath:urlLifeIndex
+                   urlToken:urlTokenLifeIndex
+                 kindOfData:lifeIndex];
+    
+        
+    NSDictionary *dict=[[NSDictionary alloc]initWithObjects:@[self] forKeys:@[@"weatherData"]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Data" object:nil userInfo:dict];
 }
 
 - (void)obtainWeatherData:(NSString *)cityID
@@ -71,7 +87,7 @@
                  urlToken:(NSString *)token
                kindOfData:(forecastDataEnum)forecastData {
     //from mojiAPI
-    NSString *appcode = @"20bc090be5de4127936e249baa57797d";
+    NSString *appcode = mojiAPIAppcode;
     NSString *host = @"https://aliv18.mojicb.com";
     NSString *method = @"POST";
     NSString *querys = @"";
@@ -150,6 +166,17 @@
                 }
             }
             else if(forecastData == lifeIndex) {
+                _YHYLifeIndexPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+                _YHYLifeIndexPath = [_YHYLifeIndexPath stringByAppendingString:@"/LiveIndexDict.plist"];
+                [AllData writeToFile:_YHYLifeIndexPath atomically:YES];
+                NSLog(@"LifeIndex path : %@", self.YHYLifeIndexPath);
+                NSDictionary *data = [AllData objectForKey:@"data"];
+                _YHYLifeIndexData = [data objectForKey:@"liveIndex"];
+                for (NSString *key in self.YHYLifeIndexData)
+                    _lifeIndexItem = [[YHYLifeIndexItem alloc] initwithArray:[_YHYLifeIndexData objectForKey:key]];
+                if([self.dataDelegate respondsToSelector:@selector(lifeIndexData:)]) {
+                    [self.dataDelegate lifeIndexData:_lifeIndexItem];
+                }
             }
         }
         }];

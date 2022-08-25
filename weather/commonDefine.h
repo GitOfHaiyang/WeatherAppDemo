@@ -15,14 +15,18 @@
 #define weakify(object) __weak __typeof__(object) weak##object = object;
 #define strongify(object) __strong __typeof__(object) object = weak##object;
 
+#define mojiAPIAppcode @"20bc090be5de4127936e249baa57797d"
 #define urlForecast15days @"/whapi/json/alicityweather/forecast15days"
 #define urlTokenForecast15days @"f9f212e1996e79e0e602b08ea297ffb0"
 
 #define urlForecast24hours @"/whapi/json/alicityweather/forecast24hours"
 #define urlTokenForecast24hours @"008d2ad9197090c5dddc76f583616606"
 
-#define urlweatherLive @"/whapi/json/alicityweather/condition"
-#define urlTokenweatherLive @"50b53ff8dd7d9fa320d3d3ca32cf8ed1"
+#define urlWeatherLive @"/whapi/json/alicityweather/condition"
+#define urlTokenWeatherLive @"50b53ff8dd7d9fa320d3d3ca32cf8ed1"
+
+#define urlLifeIndex @"/whapi/json/alicityweather/index"
+#define urlTokenLifeIndex @"5944a84ec4a071359cc4f6928b797f91"
 
 #define urlBgImageDay @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660485977938-9fb0fcaf9bb6image"
 #define urlBgImageNight @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660485958312-fd5422c212c1image"

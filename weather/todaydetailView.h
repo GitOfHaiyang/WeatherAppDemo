@@ -3,7 +3,7 @@
 //  HomePwner
 //
 //  Created by ByteDance on 2022/8/16.
-//  Copyright © 2022 Big Nerd Ranch. All rights reserved.
+//  Copyright © 2022 ByteDance. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,7 +3,7 @@
 //  WeatherDemo
 //
 //  Created by ByteDance on 2022/8/19.
-//  Copyright © 2022 Big Nerd Ranch. All rights reserved.
+//  Copyright © 2022 ByteDance. All rights reserved.
 //
 
 #import "chooseCityViewController.h"
