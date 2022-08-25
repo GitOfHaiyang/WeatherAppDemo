@@ -248,7 +248,7 @@ static NSInteger const countDay = 14;
         iconStr = self.weatherData.forecastHoursItem.iconNightHour[indexPath.item];
     }
     NSInteger iconIndex = [iconStr integerValue];
-    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"Images/icon/W%ld.png", iconIndex]];
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"W%ld.png", iconIndex]];
     
     return cell;
 }

@@ -5,8 +5,7 @@
 //  Created by ByteDance on 2022/8/10.
 //  Copyright © 2022 Big Nerd Ranch. All rights reserved.
 //
-#define weakify(object) __weak __typeof__(object) weak##object = object;
-#define strongify(object) __strong __typeof__(object) object = weak##object;
+
 
 #import <Foundation/Foundation.h>
 

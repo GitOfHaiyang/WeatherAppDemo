@@ -13,20 +13,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    #if DEBUG
-    //iOS
-    [[NSBundle bundleWithPath:@"/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle"] load];
-    //同时还支持tvOS和MacOS，配置时只需要在/Applications/InjectionIII.app/Contents/Resources/目录下找到对应的bundle文件,替换路径即可
-     #endif
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
 
     //weatherLiveVc
     weatherLiveViewController *liveVC = [weatherLiveViewController new];
     UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:@"天气实况"
-                                                        image:[UIImage imageNamed:@"Images/icons8-clouds-30.png"]
-                                                selectedImage:[UIImage imageNamed:@"Images/icons8-clouds-30.png"]];
+                                                        image:[UIImage imageNamed:@"icons8-clouds-30.png"]
+                                                selectedImage:[UIImage imageNamed:@"icons8-clouds-30.png"]];
     liveVC.tabBarItem = item5;
     
     //vc for weather
@@ -34,8 +28,8 @@
     UINavigationController *weatherNavController = [[UINavigationController alloc]
                                              initWithRootViewController:vcWeather];
     UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:@"天气预报"
-                                                        image:[UIImage imageNamed:@"Images/icons8-clouds-30.png"]
-                                                selectedImage:[UIImage imageNamed:@"Images/icons8-clouds-30.png"]];
+                                                        image:[UIImage imageNamed:@"icons8-clouds-30.png"]
+                                                selectedImage:[UIImage imageNamed:@"icons8-clouds-30.png"]];
     weatherNavController.tabBarItem = item4;
 
     
