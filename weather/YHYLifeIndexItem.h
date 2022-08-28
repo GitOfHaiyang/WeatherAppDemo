@@ -1,9 +1,9 @@
 //
 //  YHYLifeIndexItem.h
-//  HomePwner
+//  WeatherDemo
 //
-//  Created by ByteDance on 2022/8/14.
-//  Copyright © 2022 Big Nerd Ranch. All rights reserved.
+//  Created by yhy on 2022/8/14.
+//  Copyright © 2022 yhy. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray<NSString *> *desc;
 @property (nonatomic, strong) NSMutableArray<NSString *> *name;
 @property (nonatomic, strong) NSMutableArray<NSString *> *status;
+@property (nonatomic, strong) NSMutableArray<NSString *> *code;
 - (instancetype)initwithArray:(NSArray *)array;
 @end
 

@@ -1,9 +1,8 @@
 //
 //  main.m
-//  HomePwner
+//  WeatherDemo
 //
-//  Created by John Gallagher on 1/7/14.
-//  Copyright (c) 2014 Big Nerd Ranch. All rights reserved.
+//  Copyright (c) 2022 yhy. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

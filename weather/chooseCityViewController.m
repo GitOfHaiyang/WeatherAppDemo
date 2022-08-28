@@ -2,8 +2,8 @@
 //  chooseCityViewController.m
 //  WeatherDemo
 //
-//  Created by ByteDance on 2022/8/19.
-//  Copyright © 2022 ByteDance. All rights reserved.
+//  Created by yhy on 2022/8/19.
+//  Copyright © 2022 yhy. All rights reserved.
 //
 
 #import "chooseCityViewController.h"

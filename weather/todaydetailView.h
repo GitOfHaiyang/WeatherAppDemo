@@ -1,9 +1,9 @@
 //
 //  todaydetailView.h
-//  HomePwner
+//  WeatherDemo
 //
-//  Created by ByteDance on 2022/8/16.
-//  Copyright © 2022 ByteDance. All rights reserved.
+//  Created by yhy on 2022/8/16.
+//  Copyright © 2022 yhy. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

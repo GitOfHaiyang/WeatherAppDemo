@@ -1,23 +1,15 @@
 //
 //  todaydetailView.m
-//  HomePwner
+//  WeatherDemo
 //
-//  Created by ByteDance on 2022/8/16.
-//  Copyright © 2022 Big Nerd Ranch. All rights reserved.
+//  Created by yhy on 2022/8/16.
+//  Copyright © 2022 yhy. All rights reserved.
 //
 
 #import "todaydetailView.h"
 #import "commonDefine.h"
 
 @implementation todaydetailView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (instancetype)init {
     

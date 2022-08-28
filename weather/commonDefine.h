@@ -1,9 +1,9 @@
 //
 //  commonDefine.h
-//  HomePwner
+//  WeatherDemo
 //
-//  Created by ByteDance on 2022/8/16.
-//  Copyright © 2022 Big Nerd Ranch. All rights reserved.
+//  Created by yhy on 2022/8/16.
+//  Copyright © 2022 yhy. All rights reserved.
 //
 
 #ifndef commonDefine_h
@@ -30,6 +30,10 @@
 
 #define urlBgImageDay @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660485977938-9fb0fcaf9bb6image"
 #define urlBgImageNight @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660485958312-fd5422c212c1image"
-#define urlbgImageLive @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660563562784-7212e2789bccimage"
+#define urlbgImageLive @"https://s3.us-west-2.amazonaws.com/images.unsplash.com/application-1660485942921-0a531ef385beimage"
 
+#define RGB(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
+#define HexToRGB(rgbValue, alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]/// rgb颜色转换（16进制->10进制）
+///
 #endif /* commonDefine_h */

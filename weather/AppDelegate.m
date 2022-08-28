@@ -1,9 +1,9 @@
 //
-//  BNRAppDelegate.m
-//  HomePwner
+//  AppDelegate.m
+//  WeatherDemo
 //
 //  Created by John Gallagher on 1/7/14.
-//  Copyright (c) 2014 Big Nerd Ranch. All rights reserved.
+//  Copyright (c) 2014 yhy. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -35,6 +35,7 @@
     
     //add all VC to tabBarController
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
+//    tabBarController.viewControllers.//color setting
     tabBarController.viewControllers = @[weatherNavController, liveVC];
     // Place navigation controller's view in thvcWeathere window hierarchy
     self.window.rootViewController = tabBarController;
