@@ -31,8 +31,10 @@
         _windLevelNight = [NSMutableArray array];
         _humidity = [NSMutableArray array];
         
+        _tempDay = [ForecastDaysData valueForKeyPath:@"tempDay"]; //KVO存值
+        
         for(int i = 0; i < ForecastDaysData.count; i++){
-            [_tempDay addObject:[ForecastDaysData[i] objectForKey:@"tempDay"]];
+//            [_tempDay addObject:[ForecastDaysData[i] objectForKey:@"tempDay"]];
             [_tempNight addObject:[ForecastDaysData[i] objectForKey:@"tempNight"]];
             [_conditionDay addObject:[ForecastDaysData[i] objectForKey:@"conditionDay"]];
             [_conditionNight addObject:[ForecastDaysData[i] objectForKey:@"conditionNight"]];
@@ -51,6 +53,8 @@
             temp = [ForecastDaysData[i] objectForKey:@"sunset"];
             temp = [temp substringWithRange:NSMakeRange(11, 5)];
             [_sunset addObject:temp];
+            
+        
         }
     }
     return self;
