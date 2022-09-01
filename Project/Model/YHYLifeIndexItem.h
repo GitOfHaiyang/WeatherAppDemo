@@ -11,13 +11,21 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YHYLifeIndexItem : NSObject
-
+///指数代码
+@property (nonatomic, strong) NSString *code;
+///日期
 @property (nonatomic, strong) NSString *day;
-@property (nonatomic, strong) NSMutableArray<NSString *> *desc;
-@property (nonatomic, strong) NSMutableArray<NSString *> *name;
-@property (nonatomic, strong) NSMutableArray<NSString *> *status;
-@property (nonatomic, strong) NSMutableArray<NSString *> *code;
-- (instancetype)initwithArray:(NSArray *)array;
+///描述
+@property (nonatomic, strong) NSString *desc;
+///等级
+@property (nonatomic, strong) NSString *level;
+///指数名称
+@property (nonatomic, strong) NSString *name;
+///状态
+@property (nonatomic, strong) NSString *status;
+///更新时间
+@property (nonatomic, strong) NSString *updatetime;
+
 @end
 
 NS_ASSUME_NONNULL_END

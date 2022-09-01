@@ -8,13 +8,13 @@
 
 #import "YHYWeatherData.h"
 #import "YHYCityItem.h"
-#import "YHYForecastDaysItem.h"
-#import "YHYForecastHoursItem.h"
 #import "YHYLiveItem.h"
 #import "YHYLifeIndexItem.h"
 #import "commonDefine.h"
-//#import "AFNetworking.h"
-
+#import "ReactiveObjC/ReactiveObjC.h"
+#import "MJExtension.h"
+#import "YHYDaysItem.h"
+#import "YHYHoursItem.h"
 @interface YHYWeatherData ()
 //内部用
 @property (nonatomic, copy) NSDictionary *YHYAllData;
@@ -78,7 +78,7 @@
                  kindOfData:lifeIndex];
     
         
-    NSDictionary *dict=[[NSDictionary alloc]initWithObjects:@[self] forKeys:@[@"weatherData"]];
+    NSDictionary *dict=[[NSDictionary alloc] initWithObjects:@[self] forKeys:@[@"weatherData"]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Data" object:nil userInfo:dict];
 }
 
@@ -102,7 +102,7 @@
     NSData *data = [bodys dataUsingEncoding: NSUTF8StringEncoding];
     [request setHTTPBody: data];
     NSURLSession *requestSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    weakify(self);
+    YHYweakify(self);
     NSURLSessionDataTask *task = [requestSession dataTaskWithRequest:request
                                                    completionHandler:^(NSData * _Nullable body ,
                                                                        NSURLResponse * _Nullable response,
@@ -113,11 +113,11 @@
                                          userInfo:nil];
         }
         else{
-            strongify(self);
-            NSLog(@"Response object: %@" , response);
+            YHYstrongify(self);
+//            NSLog(@"Response object: %@" , response);
             //json转化为字符串
             NSString *bodyString = [[NSString alloc] initWithData:body encoding:NSUTF8StringEncoding];
-            NSLog(@"Response body: %@" , bodyString);
+//            NSLog(@"Response body: %@" , bodyString);
             //字符串再生成NSData
             NSData * myData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
             //再解析为NSDictionary
@@ -127,40 +127,36 @@
                 _YHYForecastDaysPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
                 _YHYForecastDaysPath = [_YHYForecastDaysPath stringByAppendingString:@"/forecastDaysDict.plist"];
                 [AllData writeToFile:_YHYForecastDaysPath atomically:YES];
-                NSLog(@"forecastDays path : %@", self.YHYForecastDaysPath);
                 NSDictionary *data = [AllData objectForKey:@"data"];
                 _YHYCityData = [data objectForKey:@"city"];
                 _YHYForecastDaysData = [data objectForKey:@"forecast"];
-                _cityItem = [[YHYCityItem alloc] initWithCityDictionary:_YHYCityData];
-                _forecastDaysItem = [[YHYForecastDaysItem alloc] initWithForecastDaysData:_YHYForecastDaysData];
-                NSLog(@"----City测试用：name: %@, pname: %@", _cityItem.name, _cityItem.pname);
-                NSLog(@"----forecastDay测试用：condition: %@, pop: %@", _forecastDaysItem.conditionDay[0], _forecastDaysItem.popDay[0]);
+                _cityItem = [YHYCityItem mj_objectWithKeyValues:_YHYCityData];
+                self.daysArray = [YHYDaysItem mj_objectArrayWithKeyValuesArray:_YHYForecastDaysData];
                 if ([self.dataDelegate respondsToSelector:@selector((daysData:))]) {
-                    [self.dataDelegate daysData:_forecastDaysItem];
+                    [self.dataDelegate daysData:self.daysArray];
                 }
             }
             else if(forecastData == forecastHours){
                 _YHYForecastHoursPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
                 _YHYForecastHoursPath = [_YHYForecastHoursPath stringByAppendingString:@"/forecastHoursDict.plist"];
                 [AllData writeToFile:_YHYForecastHoursPath atomically:YES];
-                NSLog(@"forecastDays path : %@", self.YHYForecastHoursPath);
                 NSDictionary *data = [AllData objectForKey:@"data"];
                 _YHYForecastHoursData = [data objectForKey:@"hourly"];
-                _forecastHoursItem = [[YHYForecastHoursItem alloc] initWithForecastHoursData:_YHYForecastHoursData];
-                NSLog(@"----forecastHour测试用：condition: %@, pop: %@", _forecastHoursItem.conditionHour[0], _forecastHoursItem.popHour[0]);
+                self.hoursArray = [YHYHoursItem mj_objectArrayWithKeyValuesArray: _YHYForecastHoursData];
                 if ([self.dataDelegate respondsToSelector:@selector(hoursData:)]) {
-                    [self.dataDelegate hoursData:_forecastHoursItem];
+                    [self.dataDelegate hoursData:self.hoursArray];
                 }
             }
             else if(forecastData == weatherLive) {
                 _YHYWeatherLivePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
                 _YHYWeatherLivePath = [_YHYWeatherLivePath stringByAppendingString:@"/WeatherLiveDict.plist"];
                 [AllData writeToFile:_YHYWeatherLivePath atomically:YES];
-                NSLog(@"weatherLive path : %@", self.YHYWeatherLivePath);
+//                NSLog(@"weatherLive path : %@", self.YHYWeatherLivePath);
                 NSDictionary *data = [AllData objectForKey:@"data"];
                 _YHYWeatherLiveData = [data objectForKey:@"condition"];
-                _liveItem = [[YHYLiveItem alloc] initWithLiveDictionary:_YHYWeatherLiveData];
-                NSLog(@"----weatherLive测试用：condition: %@, pop: %@", _liveItem.condition, _liveItem.tips);
+                self.liveItem = [YHYLiveItem mj_objectWithKeyValues:_YHYWeatherLiveData];
+//                _liveItem = [[YHYLiveItem alloc] initWithLiveDictionary:_YHYWeatherLiveData];
+//                NSLog(@"----weatherLive测试用：condition: %@, pop: %@", _liveItem.condition, _liveItem.tips);
                 if ([self.dataDelegate respondsToSelector:@selector(liveData:)]) {
                     [self.dataDelegate liveData:_liveItem];
                 }
@@ -169,13 +165,13 @@
                 _YHYLifeIndexPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
                 _YHYLifeIndexPath = [_YHYLifeIndexPath stringByAppendingString:@"/LiveIndexDict.plist"];
                 [AllData writeToFile:_YHYLifeIndexPath atomically:YES];
-                NSLog(@"LifeIndex path : %@", self.YHYLifeIndexPath);
+//                NSLog(@"LifeIndex path : %@", self.YHYLifeIndexPath);
                 NSDictionary *data = [AllData objectForKey:@"data"];
                 _YHYLifeIndexData = [data objectForKey:@"liveIndex"];
                 for (NSString *key in self.YHYLifeIndexData)
-                    _lifeIndexItem = [[YHYLifeIndexItem alloc] initwithArray:[_YHYLifeIndexData objectForKey:key]];
+                    self.lifeIndexArray = [YHYLifeIndexItem mj_objectArrayWithKeyValuesArray:[ _YHYLifeIndexData objectForKey:key]];
                 if([self.dataDelegate respondsToSelector:@selector(lifeIndexData:)]) {
-                    [self.dataDelegate lifeIndexData:_lifeIndexItem];
+                    [self.dataDelegate lifeIndexData:self.lifeIndexArray];
                 }
             }
         }

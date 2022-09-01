@@ -19,7 +19,7 @@ static NSString * const reuseIdentifier_live = @"liveCell";
 static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
 
 #define live(obj)       self.weatherData.liveItem.obj
-#define lifeIndex(obj)  self.weatherData.lifeIndexItem.obj
+#define lifeIndex(obj)  self.weatherData.lifeIndexArray.obj
 
 @interface weatherLiveViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -80,7 +80,7 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
         return 6;
     }
     else {
-        return self.weatherData.lifeIndexItem.name.count;
+        return self.weatherData.lifeIndexArray.count;
     }
 }
 
@@ -98,10 +98,10 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
         LifeIndexCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier_lifeIndex forIndexPath:indexPath];
         cell.backgroundColor = HexToRGB(0xf5f7fa, 0.45);
 //        cell.backgroundColor = 0;
-        cell.nameLabel.text = self.weatherData.lifeIndexItem.name[indexPath.item];
-        cell.statusLabel.text = self.weatherData.lifeIndexItem.status[indexPath.item];
+        cell.nameLabel.text = self.weatherData.lifeIndexArray[indexPath.item].name;
+        cell.statusLabel.text = self.weatherData.lifeIndexArray[indexPath.item].status;
         cell.imageView.backgroundColor = [UIColor clearColor];
-        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.weatherData.lifeIndexItem.code[indexPath.item]]];
+        cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", self.weatherData.lifeIndexArray[indexPath.item].code]];
         cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
         cell.imageView.clipsToBounds = NO;
         return cell;
@@ -131,7 +131,7 @@ static NSString * const reuseIdentifier_lifeIndex = @"lifeIndexCell";
         _liveView.layer.masksToBounds = YES;
         _liveView.layer.borderWidth = 0.5;
         _liveView.layer.borderColor = [UIColor grayColor].CGColor;
-        NSLog(@"collection初始化");
+//        NSLog(@"collection初始化");
         [_liveView registerClass:[LiveCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier_live];
         [_liveView registerClass:[LifeIndexCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier_lifeIndex];
 

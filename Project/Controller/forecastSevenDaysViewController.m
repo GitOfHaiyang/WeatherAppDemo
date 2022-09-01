@@ -9,8 +9,6 @@
 #import "Masonry.h"
 #import "YHYWeatherData.h"
 #import "BaseforecastSevenDaysVC.h"
-#import "YHYForecastDaysItem.h"
-#import "YHYForecastHoursItem.h"
 #import "YHYLiveItem.h"
 #import "HoursCollectionViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -19,6 +17,9 @@
 #import "todaydetailView.h"
 #import "chooseCityViewController.h"
 #import "WHToast.h"
+#import "YHYDaysItem.h"
+#import "YHYHoursItem.h"
+
 static NSString * const reuseIdentifier = @"HoursCell";
 static NSInteger const countDay = 14;
 
@@ -57,8 +58,8 @@ static NSInteger const countDay = 14;
 
 }
 
-- (void)hoursData:(YHYForecastHoursItem *)hoursItem {
-    _weatherData.forecastHoursItem = hoursItem;
+- (void)hoursData:(NSArray *)hoursArray {
+    _weatherData.hoursArray = hoursArray;
     if([NSThread isMainThread]) {
         NSLog(@"isMainThread");
     }
@@ -68,16 +69,16 @@ static NSInteger const countDay = 14;
             //更新24小时预报数据
             [self.collectionView reloadData];
             //更新当日细节天气
-            self.detailView.tempNowLabel.text = [NSString stringWithFormat:@"%@˚", self.weatherData.forecastHoursItem.tempHour[0]];
-            self.detailView.conditionLabel.text = self.weatherData.forecastHoursItem.conditionHour[0];
+            self.detailView.tempNowLabel.text = [NSString stringWithFormat:@"%@˚", self.weatherData.hoursArray[0].temp];
+            self.detailView.conditionLabel.text = self.weatherData.hoursArray[0].condition;
             //更新背景
             [self reloadImageView];
         });
     }
 }
 
-- (void)daysData:(YHYForecastDaysItem *)daysItem {
-    _weatherData.forecastDaysItem = daysItem;
+- (void)daysData:(NSArray *)daysArray {
+    _weatherData.daysArray = daysArray;
     if([NSThread isMainThread]) {
         NSLog(@"isMainThread");
     }
@@ -88,16 +89,19 @@ static NSInteger const countDay = 14;
             NSLog(@"更新days数据----");
             for ( int i = 0 ; i < countDay ; ++i )
             {
-                self.subvArray[i].conditionLabel.text = [NSString stringWithFormat:@"%@ / %@", self.weatherData.forecastDaysItem.conditionDay[i+1], self.weatherData.forecastDaysItem.conditionNight[i+1]];
-                self.subvArray[i].tempLabel.text = [NSString stringWithFormat:@"%@ / %@˚C", self.weatherData.forecastDaysItem.tempDay[i+1], self.weatherData.forecastDaysItem.tempNight[i+1]];
-                self.subvArray[i].popLabel.text = [NSString stringWithFormat:@"%@%%", self.weatherData.forecastDaysItem.popDay[i+1]];
-                NSString *test = [self.weatherData.forecastDaysItem.predictDate[i+1] substringFromIndex:self.weatherData.forecastDaysItem.predictDate[i+1].length - 5];
+                self.subvArray[i].conditionLabel.text = [NSString stringWithFormat:@"%@ / %@", self.weatherData.daysArray[i+1].conditionDay, self.weatherData.daysArray[i+1].conditionNight];
+                self.subvArray[i].tempLabel.text = [NSString stringWithFormat:@"%@ / %@˚C", self.weatherData.daysArray[i+1].tempDay, self.weatherData.daysArray[i+1].tempNight];
+                self.subvArray[i].popLabel.text = [NSString stringWithFormat:@"%@%%", self.weatherData.daysArray[i+1].pop];
+                NSString *test = [self.weatherData.daysArray[i+1].predictDate substringFromIndex:self.weatherData.daysArray[i+1].predictDate.length - 5];
                 NSString *tmpstr1 = [self timeToTurnTheTimestamp];
                 self.subvArray[i].dateLabel.text = [NSString stringWithFormat:@"%@ %@", [self weekdayStringFromDate:tmpstr1 addCount:i], test];
             }
             //更新当日细节天气
-            self.detailView.tempTodayLabel.text = [NSString stringWithFormat:@"最高温度：%@˚    最低温度：%@˚", self.weatherData.forecastDaysItem.tempDay[1], self.weatherData.forecastDaysItem.tempNight[1]];
-            self.detailView.sunRiseAndSetLabel.text = [NSString stringWithFormat:@"日出时间：%@    日落时间：%@", self.weatherData.forecastDaysItem.sunrise[1], self.weatherData.forecastDaysItem.sunset[1]];
+            self.detailView.tempTodayLabel.text = [NSString stringWithFormat:@"最高温度：%@˚    最低温度：%@˚", self.weatherData.daysArray[1].tempDay, self.weatherData.daysArray[1].tempNight];
+            self.detailView.sunRiseAndSetLabel.text =
+            [NSString stringWithFormat:@"日出时间：%@    日落时间：%@",
+                          [self clipTimeString:self.weatherData.daysArray[1].sunrise],
+                          [self clipTimeString:self.weatherData.daysArray[1].sunset]] ;
         });
     }
 }
@@ -234,8 +238,8 @@ static NSInteger const countDay = 14;
                                   forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor clearColor];
-    cell.tempLabel.text = [NSString stringWithFormat:@"%@˚", self.weatherData.forecastHoursItem.tempHour[indexPath.item]];
-    NSString *timeHourStr = self.weatherData.forecastHoursItem.timeHour[indexPath.item];
+    cell.tempLabel.text = [NSString stringWithFormat:@"%@˚", self.weatherData.hoursArray[indexPath.item].temp];
+    NSString *timeHourStr = self.weatherData.hoursArray[indexPath.item].hour;
     NSInteger hour = [timeHourStr integerValue];
     cell.timeLabel.text = [NSString stringWithFormat:@"%@%@:00 %@M",
                            hour<=10?@"0":@"",
@@ -243,9 +247,9 @@ static NSInteger const countDay = 14;
                            hour<=12?@"A":@"P"];
     NSString *iconStr;
     if(hour >= 6 && hour <18){
-        iconStr = self.weatherData.forecastHoursItem.iconDayHour[indexPath.item];
+        iconStr = self.weatherData.hoursArray[indexPath.item].iconDay;
     } else {
-        iconStr = self.weatherData.forecastHoursItem.iconNightHour[indexPath.item];
+        iconStr = self.weatherData.hoursArray[indexPath.item].iconNight;
     }
     NSInteger iconIndex = [iconStr integerValue];
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"W%ld.png", iconIndex]];
@@ -280,7 +284,7 @@ static NSInteger const countDay = 14;
         _collectionView.layer.masksToBounds = YES;
         _collectionView.layer.borderWidth = 0.5;
         _collectionView.layer.borderColor = [UIColor clearColor].CGColor;
-        NSLog(@"collection初始化");
+//        NSLog(@"collection初始化");
         [_collectionView registerClass:[HoursCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     }
     return _collectionView;
@@ -316,7 +320,7 @@ static NSInteger const countDay = 14;
 
 - (void)reloadImageView{
     if(self.imageView){
-        NSString *timeHourStr = self.weatherData.forecastHoursItem.timeHour[0];
+        NSString *timeHourStr = self.weatherData.hoursArray[0].hour;
         NSInteger hour = [timeHourStr integerValue];
         if(hour < 18 && hour >=6){
             [self.imageView sd_setImageWithURL:urlBgImageDay];
@@ -383,6 +387,9 @@ static NSInteger const countDay = 14;
     
 }
 
+- (NSString *)clipTimeString:(NSString *)str {
+    return [str substringWithRange:NSMakeRange(11, 5)];
+}
 /*
 #pragma mark - Navigation
 

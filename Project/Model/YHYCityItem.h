@@ -18,12 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *pname;
 @property (nonatomic, copy) NSString *secondaryname;
-
-
-
 @property (nonatomic, copy) NSString *timezone;
 
-- (instancetype)initWithCityDictionary:(NSDictionary *)cityDictionary;
+//- (instancetype)initWithCityDictionary:(NSDictionary *)cityDictionary;
 
 @end
 

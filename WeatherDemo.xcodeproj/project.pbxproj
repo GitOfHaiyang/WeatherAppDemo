@@ -16,12 +16,12 @@
 		2B6367B128A4ABBB0020DD1E /* forecastSevenDaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6367AF28A4ABBA0020DD1E /* forecastSevenDaysViewController.m */; };
 		2B6367B428A4FF880020DD1E /* BaseforecastSevenDaysVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6367B328A4FF880020DD1E /* BaseforecastSevenDaysVC.m */; };
 		2B63682628A63AE10020DD1E /* HoursCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63682528A63AE10020DD1E /* HoursCollectionViewCell.m */; };
-		2B63682C28A655130020DD1E /* YHYForecastDaysItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63682A28A655130020DD1E /* YHYForecastDaysItem.m */; };
-		2B63682F28A6556B0020DD1E /* YHYForecastHoursItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63682E28A6556B0020DD1E /* YHYForecastHoursItem.m */; };
 		2B63DFD928A93D000023FB79 /* weatherLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63DFD828A93D000023FB79 /* weatherLiveViewController.m */; };
 		2B63DFDC28A93E050023FB79 /* YHYLiveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63DFDB28A93E050023FB79 /* YHYLiveItem.m */; };
 		2B63DFDF28A940720023FB79 /* YHYLifeIndexItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63DFDE28A940720023FB79 /* YHYLifeIndexItem.m */; };
 		2B63DFE228A94E950023FB79 /* LiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63DFE128A94E950023FB79 /* LiveCollectionViewCell.m */; };
+		2B765EA428C09F9E00DB7E48 /* YHYDaysItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B765EA328C09F9E00DB7E48 /* YHYDaysItem.m */; };
+		2B765EA728C0AFC800DB7E48 /* YHYHoursItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B765EA628C0AFC800DB7E48 /* YHYHoursItem.m */; };
 		2BA6190E28AB4B0B004DC95C /* todaydetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA6190D28AB4B0B004DC95C /* todaydetailView.m */; };
 		2BF4FE4E28B9ED1500CC061C /* icons8-clouds-30.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BF4FE2C28B9ED1500CC061C /* icons8-clouds-30.png */; };
 		2BF4FE4F28B9ED1500CC061C /* .~天气图标对照表.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = 2BF4FE2E28B9ED1500CC061C /* .~天气图标对照表.xlsx */; };
@@ -110,10 +110,6 @@
 		2B6367B328A4FF880020DD1E /* BaseforecastSevenDaysVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseforecastSevenDaysVC.m; sourceTree = "<group>"; };
 		2B63682428A63AE10020DD1E /* HoursCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoursCollectionViewCell.h; sourceTree = "<group>"; };
 		2B63682528A63AE10020DD1E /* HoursCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HoursCollectionViewCell.m; sourceTree = "<group>"; };
-		2B63682A28A655130020DD1E /* YHYForecastDaysItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YHYForecastDaysItem.m; sourceTree = "<group>"; };
-		2B63682B28A655130020DD1E /* YHYForecastDaysItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YHYForecastDaysItem.h; sourceTree = "<group>"; };
-		2B63682D28A6556B0020DD1E /* YHYForecastHoursItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYForecastHoursItem.h; sourceTree = "<group>"; };
-		2B63682E28A6556B0020DD1E /* YHYForecastHoursItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHYForecastHoursItem.m; sourceTree = "<group>"; };
 		2B63DFD728A93D000023FB79 /* weatherLiveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = weatherLiveViewController.h; sourceTree = "<group>"; };
 		2B63DFD828A93D000023FB79 /* weatherLiveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = weatherLiveViewController.m; sourceTree = "<group>"; };
 		2B63DFDA28A93E050023FB79 /* YHYLiveItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYLiveItem.h; sourceTree = "<group>"; };
@@ -122,6 +118,10 @@
 		2B63DFDE28A940720023FB79 /* YHYLifeIndexItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHYLifeIndexItem.m; sourceTree = "<group>"; };
 		2B63DFE028A94E950023FB79 /* LiveCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiveCollectionViewCell.h; sourceTree = "<group>"; };
 		2B63DFE128A94E950023FB79 /* LiveCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveCollectionViewCell.m; sourceTree = "<group>"; };
+		2B765EA228C09F9E00DB7E48 /* YHYDaysItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYDaysItem.h; sourceTree = "<group>"; };
+		2B765EA328C09F9E00DB7E48 /* YHYDaysItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHYDaysItem.m; sourceTree = "<group>"; };
+		2B765EA528C0AFC800DB7E48 /* YHYHoursItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YHYHoursItem.h; sourceTree = "<group>"; };
+		2B765EA628C0AFC800DB7E48 /* YHYHoursItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YHYHoursItem.m; sourceTree = "<group>"; };
 		2BA6190C28AB4B0B004DC95C /* todaydetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = todaydetailView.h; sourceTree = "<group>"; };
 		2BA6190D28AB4B0B004DC95C /* todaydetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = todaydetailView.m; sourceTree = "<group>"; };
 		2BA6190F28AB4B92004DC95C /* commonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commonDefine.h; sourceTree = "<group>"; };
@@ -343,10 +343,10 @@
 				2B63DFDB28A93E050023FB79 /* YHYLiveItem.m */,
 				2B63DFDD28A940720023FB79 /* YHYLifeIndexItem.h */,
 				2B63DFDE28A940720023FB79 /* YHYLifeIndexItem.m */,
-				2B63682B28A655130020DD1E /* YHYForecastDaysItem.h */,
-				2B63682A28A655130020DD1E /* YHYForecastDaysItem.m */,
-				2B63682D28A6556B0020DD1E /* YHYForecastHoursItem.h */,
-				2B63682E28A6556B0020DD1E /* YHYForecastHoursItem.m */,
+				2B765EA228C09F9E00DB7E48 /* YHYDaysItem.h */,
+				2B765EA328C09F9E00DB7E48 /* YHYDaysItem.m */,
+				2B765EA528C0AFC800DB7E48 /* YHYHoursItem.h */,
+				2B765EA628C0AFC800DB7E48 /* YHYHoursItem.m */,
 				2B6367A628A392FF0020DD1E /* YHYWeatherData.h */,
 				2B6367A728A392FF0020DD1E /* YHYWeatherData.m */,
 				2BA6190F28AB4B92004DC95C /* commonDefine.h */,
@@ -582,15 +582,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B63682C28A655130020DD1E /* YHYForecastDaysItem.m in Sources */,
 				2B6367AB28A413CE0020DD1E /* YHYCityItem.m in Sources */,
 				2B63DFDC28A93E050023FB79 /* YHYLiveItem.m in Sources */,
+				2B765EA728C0AFC800DB7E48 /* YHYHoursItem.m in Sources */,
 				2B6367B428A4FF880020DD1E /* BaseforecastSevenDaysVC.m in Sources */,
 				2B2DB19128AFA05600307E09 /* AppDelegate.m in Sources */,
 				2B63DFDF28A940720023FB79 /* YHYLifeIndexItem.m in Sources */,
 				2B63682628A63AE10020DD1E /* HoursCollectionViewCell.m in Sources */,
 				2B570ACB28B79FAC003048C8 /* LifeIndexCollectionViewCell.m in Sources */,
-				2B63682F28A6556B0020DD1E /* YHYForecastHoursItem.m in Sources */,
+				2B765EA428C09F9E00DB7E48 /* YHYDaysItem.m in Sources */,
 				2B6367B128A4ABBB0020DD1E /* forecastSevenDaysViewController.m in Sources */,
 				2B6367A828A392FF0020DD1E /* YHYWeatherData.m in Sources */,
 				2B2DB18C28AF661100307E09 /* chooseCityViewController.m in Sources */,

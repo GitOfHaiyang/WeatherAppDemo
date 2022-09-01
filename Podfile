@@ -9,4 +9,5 @@ target 'WeatherDemo' do
   pod 'MMPlaceHolder'
   pod 'WHToast','~>0.1.0'
   pod 'MJExtension'
+  pod 'ReactiveObjC'
 end

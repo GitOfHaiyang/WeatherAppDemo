@@ -25,13 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *updatetime;
 
 @property (nonatomic, copy) NSString *uvi;
+@property (nonatomic, copy) NSString *vis;
+@property (nonatomic, copy) NSString *windDegrees;
 @property (nonatomic, copy) NSString *windDir;
 @property (nonatomic, copy) NSString *windLevel;
 @property (nonatomic, copy) NSString *windSpeed;
 
 
 
-- (instancetype)initWithLiveDictionary:(NSDictionary *)liveDictionary;
 
 @end
 

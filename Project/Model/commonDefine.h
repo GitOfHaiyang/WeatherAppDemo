@@ -12,8 +12,8 @@
 #define ScreenWidth     [[UIScreen mainScreen] bounds].size.width
 #define ScreenHeight    [[UIScreen mainScreen] bounds].size.height
 
-#define weakify(object) __weak __typeof__(object) weak##object = object;
-#define strongify(object) __strong __typeof__(object) object = weak##object;
+#define YHYweakify(object) __weak __typeof__(object) weak##object = object;
+#define YHYstrongify(object) __strong __typeof__(object) object = weak##object;
 
 #define mojiAPIAppcode @"20bc090be5de4127936e249baa57797d"
 #define urlForecast15days @"/whapi/json/alicityweather/forecast15days"

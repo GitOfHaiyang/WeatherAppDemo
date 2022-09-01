@@ -9,6 +9,9 @@
 #import "chooseCityViewController.h"
 #import "commonDefine.h"
 
+static NSString * const cellIndentifier = @"cell";
+
+
 @interface chooseCityViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *cityTableView;
@@ -26,6 +29,8 @@
     [self initNav];
     [self initDataSource];
     [self initTableView];
+
+    [self.cityTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIndentifier];
 }
 
 - (void)initNav {
@@ -58,6 +63,7 @@
     self.cityTableView.delegate = self;
     self.cityTableView.sectionIndexColor = [UIColor colorWithRed:252/255.0f green:74/255.0f blue:132/255.0f alpha:1.0f];
     [self.view addSubview:self.cityTableView];
+
 }
 
 - (void)initDataSource {
@@ -130,11 +136,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIndentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIndentifier];
-    }
     cell.textLabel.text = [[self.dataSourceArray[indexPath.section] objectAtIndex:indexPath.row] objectForKey:@"city"];
     return cell;
 }
