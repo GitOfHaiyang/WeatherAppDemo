@@ -1,0 +1,56 @@
+PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
+  - MJExtension (3.4.1)
+  - MMPlaceHolder (1.9)
+  - ReactiveObjC (3.1.1)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+  - WHToast (0.1.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 4.0)
+  - Masonry (~> 1.1.0)
+  - MJExtension
+  - MMPlaceHolder
+  - ReactiveObjC
+  - SDWebImage (~> 4.3.2)
+  - WHToast (~> 0.1.0)
+
+SPEC REPOS:
+  trunk:
+    - AFNetworking
+    - Masonry
+    - MJExtension
+    - MMPlaceHolder
+    - ReactiveObjC
+    - SDWebImage
+    - WHToast
+
+SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
+  MMPlaceHolder: 40212b9dfe8760134b1b2fce3232f0d46200178f
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  WHToast: 7d393091940215c2b8bcf78422d1855f9bfa3975
+
+PODFILE CHECKSUM: 50814d90ea103b0e4b886108591e0cd6a1dd3bbf
+
+COCOAPODS: 1.11.3
