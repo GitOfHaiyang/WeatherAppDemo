@@ -36,4 +36,72 @@
 
 #define HexToRGB(rgbValue, alphaValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:alphaValue]/// rgb颜色转换（16进制->10进制）
 ///
+
+///单例模式
+#define singleH(name) +(instancetype)share##name;
+
+#if __has_feature(objc_arc)
+
+#define singleM(name) static id _instance;\
++(instancetype)allocWithZone:(struct _NSZone *)zone\
+{\
+    static dispatch_once_t onceToken;\
+    dispatch_once(&onceToken, ^{\
+        _instance = [super allocWithZone:zone];\
+    });\
+    return _instance;\
+}\
+\
++(instancetype)share##name\
+{\
+    return [[self alloc]init];\
+}\
+-(id)copyWithZone:(NSZone *)zone\
+{\
+    return _instance;\
+}\
+\
+-(id)mutableCopyWithZone:(NSZone *)zone\
+{\
+    return _instance;\
+}
+
+#else
+#define singleM static id _instance;\
++(instancetype)allocWithZone:(struct _NSZone *)zone\
+{\
+static dispatch_once_t onceToken;\
+dispatch_once(&onceToken, ^{\
+_instance = [super allocWithZone:zone];\
+});\
+return _instance;\
+}\
+\
++(instancetype)shareTools\
+{\
+return [[self alloc]init];\
+}\
+-(id)copyWithZone:(NSZone *)zone\
+{\
+return _instance;\
+}\
+-(id)mutableCopyWithZone:(NSZone *)zone\
+{\
+return _instance;\
+}\
+-(oneway void)release\
+{\
+}\
+\
+-(instancetype)retain\
+{\
+    return _instance;\
+}\
+\
+-(NSUInteger)retainCount\
+{\
+    return MAXFLOAT;\
+}
+#endif
+
 #endif /* commonDefine_h */

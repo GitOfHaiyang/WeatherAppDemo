@@ -8,9 +8,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "commonDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^daysBlock) (NSArray *daysArray);
 @class YHYCityItem,YHYLiveItem,YHYLifeIndexItem;
 @class YHYDaysItem;
 @class YHYHoursItem;
@@ -32,6 +34,8 @@ typedef NS_ENUM(char, forecastDataEnum){
 };
 
 @interface YHYWeatherData : NSObject
+////回调block
+@property (nonatomic, weak) daysBlock dataBlock;
 //设置委托者
 @property (nonatomic, weak) id<weatherDataDelegate> dataDelegate;
 ///city信息
@@ -58,7 +62,7 @@ typedef NS_ENUM(char, forecastDataEnum){
 
 @property (nonatomic) forecastDataEnum forecastData;
 
-+ (instancetype)sharedInstance;
+singleH(YHYWeatherData)
 
 - (void)refreshWeatherData:(NSString *)cityId;
 

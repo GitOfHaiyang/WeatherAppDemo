@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *secondaryname;
 @property (nonatomic, copy) NSString *timezone;
 
-//- (instancetype)initWithCityDictionary:(NSDictionary *)cityDictionary;
-
 @end
 
 NS_ASSUME_NONNULL_END

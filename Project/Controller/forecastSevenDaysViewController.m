@@ -106,9 +106,42 @@ static NSInteger const countDay = 14;
     }
 }
 
+- (void)refreshDaysData {
+    YHYweakify(self);
+    _weatherData.dataBlock = ^(NSArray * _Nonnull daysArray) {
+        YHYstrongify(self);
+        self.weatherData.daysArray = daysArray;
+        if([NSThread isMainThread]) {
+            NSLog(@"isMainThread");
+        }
+        else {
+            NSLog(@"No mainThread");
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                //更新15天预备数据
+                NSLog(@"更新days数据----");
+                for ( int i = 0 ; i < countDay ; ++i )
+                {
+                    self.subvArray[i].conditionLabel.text = [NSString stringWithFormat:@"%@ / %@", self.weatherData.daysArray[i+1].conditionDay, self.weatherData.daysArray[i+1].conditionNight];
+                    self.subvArray[i].tempLabel.text = [NSString stringWithFormat:@"%@ / %@˚C", self.weatherData.daysArray[i+1].tempDay, self.weatherData.daysArray[i+1].tempNight];
+                    self.subvArray[i].popLabel.text = [NSString stringWithFormat:@"%@%%", self.weatherData.daysArray[i+1].pop];
+                    NSString *test = [self.weatherData.daysArray[i+1].predictDate substringFromIndex:self.weatherData.daysArray[i+1].predictDate.length - 5];
+                    NSString *tmpstr1 = [self timeToTurnTheTimestamp];
+                    self.subvArray[i].dateLabel.text = [NSString stringWithFormat:@"%@ %@", [self weekdayStringFromDate:tmpstr1 addCount:i], test];
+                }
+                //更新当日细节天气
+                self.detailView.tempTodayLabel.text = [NSString stringWithFormat:@"最高温度：%@˚    最低温度：%@˚", self.weatherData.daysArray[1].tempDay, self.weatherData.daysArray[1].tempNight];
+                self.detailView.sunRiseAndSetLabel.text =
+                [NSString stringWithFormat:@"日出时间：%@    日落时间：%@",
+                              [self clipTimeString:self.weatherData.daysArray[1].sunrise],
+                              [self clipTimeString:self.weatherData.daysArray[1].sunset]] ;
+            });
+        }
+    };
+}
+
 - (instancetype)init{
     if( self = [super init]){
-        _weatherData = [YHYWeatherData sharedInstance];
+        _weatherData = [YHYWeatherData shareYHYWeatherData];
         _weatherData.dataDelegate = self;
 
     
@@ -119,6 +152,8 @@ static NSInteger const countDay = 14;
         _rightBtn = [[UIBarButtonItem alloc]initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(refreshAllData)];
         [_rightBtn setTintColor:[UIColor blackColor]];
         self.navigationItem.rightBarButtonItem = _rightBtn;
+        
+        [self refreshDaysData];
     }
     return self;
 }
@@ -347,9 +382,7 @@ static NSInteger const countDay = 14;
         for ( int i = 0 ; i < countDay ; ++i )
         {
             //初始化数据
-            
             BaseforecastSevenDaysVC *subv = [BaseforecastSevenDaysVC new];
-            
             [_subvArray addObject:subv];
         }
     }

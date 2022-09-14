@@ -30,14 +30,15 @@
 
 @implementation YHYWeatherData
 
-+ (instancetype)sharedInstance {
-    static id sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
+//+ (instancetype)sharedInstance {
+//    static id sharedInstance = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedInstance = [[self alloc] init];
+//    });
+//    return sharedInstance;
+//}
+singleM(YHYWeatherData)
 
 - (instancetype)initWithCityId:(NSString *)cityId {
     [self cityWriteToPList];
@@ -135,6 +136,10 @@
                 if ([self.dataDelegate respondsToSelector:@selector((daysData:))]) {
                     [self.dataDelegate daysData:self.daysArray];
                 }
+//                NSArray *dataArray = [[NSArray alloc] initWithArray:self.daysArray];
+//                if (self.dataBlock) {
+//                    self.dataBlock(dataArray);
+//                }
             }
             else if(forecastData == forecastHours){
                 _YHYForecastHoursPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
